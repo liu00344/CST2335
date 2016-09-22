@@ -3,4 +3,12 @@
     <string name="app_name">Lab1</string>
     <string name="hello_message">你好!</string>
     <string name="ButtonText">按钮!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="login">登陆</string>
+    <string name="login_name">登陆姓名</string>
+    <string name="password">密 码</string>
+    <string name="Button_1">按钮 1</string>
+    <string name="Button_2">按钮 2</string>
+    <string name="Button_3">支持WIFI</string>
+    <string name="star">星星</string>
 </resources>
