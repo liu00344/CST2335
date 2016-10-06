@@ -11,4 +11,17 @@
     <string name="Button_2">按钮 2</string>
     <string name="Button_3">支持WIFI</string>
     <string name="star">星星</string>
+
+    <string name="Login_email">Login</string>
+
+    <string name="dialog_messege">你想要退出吗？</string>
+    <string name="dialog_title">退出 ListItems Activity</string>
+    <string name="cancel">NO</string>
+    <string name="ok">Yes</string>
+    <string name="my_shared_information">My information to share.</string>
+
+    <string name="button_Start_Chat">Start Chat</string>
+    <string name="button_send">Send</string>
+
+
 </resources>
