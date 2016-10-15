@@ -20,9 +20,6 @@ public class StartActivity extends AppCompatActivity {
 
     protected static final String ACTIVITY_NAME = "StartActivity";
 
-    //private GoogleApiClient client;
-
-    //static final int LIST_ITEMS_REQUEST
     Button mybutton;
 
     @Override

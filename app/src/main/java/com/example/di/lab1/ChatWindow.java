@@ -1,6 +1,9 @@
 package com.example.di.lab1;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,11 +33,12 @@ public class ChatWindow extends AppCompatActivity {
     ArrayList<String> messages;
     private ChatAdapter messageAdapter;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    // private GoogleApiClient client;
+    //below Lab5 added
+    //private ChatDatabaseHelper dhHelper;
+    private SQLiteDatabase db = null;  //a SQLiteDatabase object
+    protected static final String ACTIVITY_NAME = "ChatWindow";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +56,56 @@ public class ChatWindow extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 messages.add(inputMessage.getText().toString());
+
+                //Lab5 ADDED
+                ContentValues values = new ContentValues();
+                values.put(ChatDatabaseHelper.KEY_MESSAGE, inputMessage.getText().toString());
+                db.insert(ChatDatabaseHelper.TABLE_NAME,null,values);//teacher added
+
                 messageAdapter.notifyDataSetChanged();//this restarts the process of getCount()/getView()
                 inputMessage.setText("");
+
+                 //Cursor results1 = db.query(false, MyDatabaseHelper.TABLENAME, new String[] {"Price"}, "? < ?", new String[]{"Price","7","ignore","ignore"}, null,null,null,null);
+
             }
         });
+
+
+        //below LAB5 added
+        ChatDatabaseHelper dhHelper = new ChatDatabaseHelper(this); //creates a temporary ChatDatabaseHelper object
+        //dhHelper.getReadableDatabase(); //open it as read-only
+        db = dhHelper.getWritableDatabase(); //open it for both read and write
+
+        Cursor cursor = db.query(ChatDatabaseHelper.TABLE_NAME, new String[]
+                {ChatDatabaseHelper.KEY_ID,ChatDatabaseHelper.KEY_MESSAGE},null,null,null,null,null);
+
+        Log.i(ACTIVITY_NAME, "Cursor’s  column count = " + cursor.getColumnCount() );
+
+        //int colIndex = cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE);
+
+        for(int i = 0; i < cursor.getColumnCount(); i++){
+           Log.i(ACTIVITY_NAME, "Cursor's column Name: " + cursor.getColumnName(i));
+        }
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + cursor.getString( cursor.getColumnIndex( ChatDatabaseHelper.KEY_MESSAGE) ) );
+            messages.add(cursor.getString(1));
+            cursor.moveToNext();
+
+        }
+        // make sure to close the cursor
+        cursor.close();
+
+        // END Lab5 ADDED
     }
+
+    //Lab5 ADDED
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
+        Log.i(ACTIVITY_NAME, "In onDestroy()");
+    }//end added
 
     class ChatAdapter extends ArrayAdapter<String> {
         public ChatAdapter(Context ctx) {
@@ -87,6 +136,7 @@ public class ChatWindow extends AppCompatActivity {
 
         }
     }
+
 
 
 }
