@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(ACTIVITY_NAME, "In onStart()");
 
                 Intent intent = new Intent(LoginActivity.this, StartActivity.class);
-                startActivity(intent);
+                startActivity(intent);//go to startActivity
             }
         });
 

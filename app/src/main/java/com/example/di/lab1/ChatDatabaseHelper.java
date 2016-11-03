@@ -8,7 +8,7 @@ import android.util.Log;
 /**
  * Created by di on 2016-10-11.
  */
-public class ChatDatabaseHelper extends SQLiteOpenHelper {
+public class ChatDatabaseHelper extends SQLiteOpenHelper { //creating and opening databases
 
     public static final  String DATABASE_NAME = "Chats.db" ;
     public static final  int VERSION_NUM = 24;
