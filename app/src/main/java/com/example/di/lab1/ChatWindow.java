@@ -42,7 +42,7 @@ public class ChatWindow extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chat_window);
+      //Lab7  //setContentView(R.layout.activity_chat_window);
 
         listViewMessages = (ListView) findViewById(R.id.listView);
         inputMessage = (EditText) findViewById(R.id.textInput);
