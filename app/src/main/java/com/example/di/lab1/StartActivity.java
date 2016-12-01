@@ -76,6 +76,16 @@ public class StartActivity extends AppCompatActivity {
 
             }
         });
+        //lab8
+        Button toolbar = (Button) findViewById(R.id.test_toolbar);
+        toolbar.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartActivity.this, TestToolbar.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
     @Override

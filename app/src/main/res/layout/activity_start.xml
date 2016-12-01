@@ -38,4 +38,12 @@
         android:id="@+id/button4"
         android:layout_below="@+id/button3"
         android:layout_alignStart="@+id/button3" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_toolbar"
+        android:id="@+id/test_toolbar"
+        android:layout_below="@+id/button4"
+        android:layout_alignStart="@+id/button4" />
 </RelativeLayout>
